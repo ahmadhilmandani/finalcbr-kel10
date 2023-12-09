@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Kasus extends Model
+class BaseCaseModel extends Model
 {
-    protected $table            = 'kasus';
-    protected $primaryKey       = 'id_kasus';
+    protected $table            = 'base_case';
+    protected $primaryKey       = 'id_basecase';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
@@ -37,4 +37,19 @@ class Kasus extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected $builder;
+
+    function __construct(){
+        parent::__construct();
+        $this->builder = $this->db->table('base_case');
+    }
+
+    function GetKasus(){ 
+        return $this->builder   ->select('base_case.*, kasus.*, minat_bakat.*')
+                                ->join('kasus', 'kasus.id_kasus = base_case.id_kasus')
+                                ->join('minat_bakat', 'minat_bakat.id_minatbakat = kasus.id_minatbakat')
+                                ->get()
+                                ->getResultArray();
+    }
 }
