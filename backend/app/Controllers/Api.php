@@ -8,6 +8,6 @@ class Api extends BaseController
 {
     public function index()
     {
-        //
+        
     }
 }
