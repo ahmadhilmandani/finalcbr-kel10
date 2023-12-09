@@ -6,8 +6,8 @@ use CodeIgniter\Model;
 
 class SiswaModel extends Model
 {
-    protected $table            = 'siswas';
-    protected $primaryKey       = 'id';
+    protected $table            = 'siswa';
+    protected $primaryKey       = 'id_siswa';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;

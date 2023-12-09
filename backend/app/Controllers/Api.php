@@ -17,9 +17,12 @@ class Api extends BaseController
     {
         $basecmodel = new BaseCaseModel();
 
+        // Set value data yang dikirim untuk reply / respond
         $data = [
             'base case' => $basecmodel->GetKasus()
         ];
+
+        // Respon ke Request
         if ($data) {
             return $this->respond($data);
         } else {
@@ -45,13 +48,14 @@ class Api extends BaseController
         ];
         $siswaModel->insert($data_siswa);
         
-        // Ambil ID mahasiswa yang baru saja dimasukkan
+        // Ambil ID mahasiswa yang baru saja dimasukkan ke tabel `siswa`
         $id_siswa = $siswaModel->getInsertID();
         $number = 1;
         $kasuspre_id = 'K';
 
         $kasusModel = new KasusModel();
 
+        // Memeriksa ID kasus sampai ditemukan yang tersedia
         while ($kasusModel->CekId($kasuspre_id.$number)){
             $number++;
             $id_kasus = $kasuspre_id.$number;
