@@ -37,4 +37,34 @@ class PernyataanSiswaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected $builder;
+
+    // Deklarasi builder agar tidak perlu mengulang setiap membuat function, DRY
+    function __construct()
+    {
+        parent::__construct();
+        $this->builder = $this->db->table('pernyataan_siswa');
+    }
+
+    // Tentu saja...
+    function GetPernyataanSiswa()
+    {
+        return $this->builder->select('pernyataan_siswa.*, kasus.*, pernyataan.*')
+            ->join('kasus', 'pernyataan_siswa.id_kasus = kasus.id_kasus')
+            ->get()
+            ->getResultArray();
+    }
+
+    // Memeriksa ID di Tabel Database
+    function CekId($id)
+    {
+        $result = $this->builder->where('pernyataan_siswa.id', $id)
+            ->get()
+            ->getResult();
+
+        if ($result > 0) {
+            return true;
+        } else return false;
+    }
 }
