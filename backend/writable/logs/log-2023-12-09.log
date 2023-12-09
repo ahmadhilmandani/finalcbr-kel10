@@ -118,3 +118,46 @@ in APPPATH\Controllers\Api.php on line 22.
  3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
  5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\Code\\PHP\\finalcbr-kel10\\backend\\public\\index.php')
+ERROR - 2023-12-09 08:50:13 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:184
+Stack trace:
+#0 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(184): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'uas_cbr', 3309, '', 0)
+#1 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `base_ca...', Array, false)
+#4 D:\Code\PHP\finalcbr-kel10\backend\app\Models\BaseCaseModel.php(52): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\Code\PHP\finalcbr-kel10\backend\app\Controllers\Api.php(22): App\Models\BaseCaseModel->GetKasus()
+#6 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\CodeIgniter.php(942): App\Controllers\Api->index()
+#7 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#8 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 D:\Code\PHP\finalcbr-kel10\backend\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(47): require_once('D:\\Code\\PHP\\fin...')
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:229
+Stack trace:
+#0 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `base_ca...', Array, false)
+#3 D:\Code\PHP\finalcbr-kel10\backend\app\Models\BaseCaseModel.php(52): CodeIgniter\Database\BaseBuilder->get()
+#4 D:\Code\PHP\finalcbr-kel10\backend\app\Controllers\Api.php(22): App\Models\BaseCaseModel->GetKasus()
+#5 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\CodeIgniter.php(942): App\Controllers\Api->index()
+#6 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+#7 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 D:\Code\PHP\finalcbr-kel10\backend\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 D:\Code\PHP\finalcbr-kel10\backend\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(47): require_once('D:\\Code\\PHP\\fin...')
+#10 {main}
+CRITICAL - 2023-12-09 08:50:13 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 428.
+ 1 SYSTEMPATH\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `base_case`.*, `kasus`.*, `minat_bakat`.*
+FROM `base_case`
+JOIN `kasus` ON `kasus`.`id_kasus` = `base_case`.`id_kasus`
+JOIN `minat_bakat` ON `minat_bakat`.`id_minatbakat` = `kasus`.`id_minatbakat`', [], false)
+ 3 APPPATH\Models\BaseCaseModel.php(52): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\Api.php(22): App\Models\BaseCaseModel->GetKasus()
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Api->index()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\Code\\PHP\\finalcbr-kel10\\backend\\public\\index.php')

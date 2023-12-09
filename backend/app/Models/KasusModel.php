@@ -40,11 +40,13 @@ class KasusModel extends Model
 
     protected $builder;
 
+    // Deklarasi builder agar tidak perlu mengulang setiap membuat function, DRY
     function __construct(){
         parent::__construct();
         $this->builder = $this->db->table('kasus');
     }
 
+    // Tentu saja...
     function GetKasus(){ 
         return $this->builder   ->select('kasus.*, siswa.*')
                                 ->join('siswa', 'kasus.id_siswa = siswa.id_siswa')
@@ -52,6 +54,7 @@ class KasusModel extends Model
                                 ->getResultArray();
     }
 
+    // Memeriksa ID di Tabel Database
     function CekId($id){
         $result = $this->builder    ->where('kasus.id', $id)
                                     ->get()
