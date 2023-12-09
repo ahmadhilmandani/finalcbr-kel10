@@ -67,12 +67,12 @@ class Api extends BaseController
         
         if (!empty($jawaban)) {
             foreach ($jawaban as $jawab) {
-                $data_pernyataan_siswa = [
-                    'id_kasus' => 'ID_KASUS_YANG_DIPILIH', // Ganti dengan ID kasus yang sesuai
-                    'id_pernyataan' => $jawab,
-                    'id_siswa' => $id_siswa,
+                $data_pernyataansiswa = [
+                    'id_pernyataansiswa' => $id_siswa,
+                    'id_kasus' => $id_kasus,
+                    'id_pernyataan' => $jawab
                 ];
-                $pernyataanSiswaModel->insert($data_pernyataan_siswa);
+                $pernyataanSiswaModel->insert($data_pernyataansiswa);
             }
         }
     }

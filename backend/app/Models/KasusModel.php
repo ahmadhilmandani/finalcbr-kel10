@@ -53,6 +53,12 @@ class KasusModel extends Model
     }
 
     function CekId($id){
-        return;
+        $result = $this->builder    ->where('kasus.id', $id)
+                                    ->get()
+                                    ->getResult();
+
+        if($result > 0){
+            return true;
+        } else return false;
     }
 }
