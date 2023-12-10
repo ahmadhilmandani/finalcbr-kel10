@@ -57,7 +57,7 @@ class KasusModel extends Model
 
     // Memeriksa ID di Tabel Database
     function CekId($id){
-        $result = $this->builder    ->where('kasus.id', $id)
+        $result = $this->builder    ->where('kasus.id_kasus', $id)
                                     ->get()
                                     ->getResult();
 

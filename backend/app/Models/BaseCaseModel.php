@@ -53,4 +53,14 @@ class BaseCaseModel extends Model
                                 ->get()
                                 ->getResultArray();
     }
+
+    function CekId($id){
+        $result = $this->builder    ->where('kasus.id_basecase', $id)
+                                    ->get()
+                                    ->getResult();
+
+        if($result > 0){
+            return true;
+        } else return false;
+    }
 }

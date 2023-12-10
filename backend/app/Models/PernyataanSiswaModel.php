@@ -60,7 +60,7 @@ class PernyataanSiswaModel extends Model
     // Memeriksa ID di Tabel Database
     function CekId($id)
     {
-        $result = $this->builder->where('pernyataan_siswa.id', $id)
+        $result = $this->builder->where('pernyataan_siswa.id_pernyataansiswa', $id)
             ->get()
             ->getResult();
 

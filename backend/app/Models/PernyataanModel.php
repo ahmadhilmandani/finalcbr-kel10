@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class PernyataanModel extends Model
 {
     protected $table            = 'pernyataan';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_pernyataan';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
@@ -50,17 +50,17 @@ class PernyataanModel extends Model
     // Tentu saja...
     function GetPernyataan()
     {
-        return $this->builder->select('pernyataan.*')
-            ->get()
-            ->getResultArray();
+        return $this->builder   ->select('pernyataan.*')
+                                ->get()
+                                ->getResultArray();
     }
 
     // Memeriksa ID di Tabel Database
     function CekId($id)
     {
-        $result = $this->builder->where('pernyataan.id', $id)
-            ->get()
-            ->getResult();
+        $result = $this->builder    ->where('pernyataan.id_pernyataan', $id)
+                                    ->get()
+                                    ->getResult();
 
         if ($result > 0) {
             return true;

@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class MinatBakatModel extends Model
 {
     protected $table            = 'minat_bakat';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_minatbakat';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
@@ -50,17 +50,17 @@ class MinatBakatModel extends Model
     // Tentu saja...
     function GetMinatBakat()
     {
-        return $this->builder->select('minat_bakat.*')
-            ->get()
-            ->getResultArray();
+        return $this->builder   ->select('minat_bakat.*')
+                                ->get()
+                                ->getResultArray();
     }
 
     // Memeriksa ID di Tabel Database
     function CekId($id)
     {
-        $result = $this->builder->where('minat_bakat.id', $id)
-            ->get()
-            ->getResult();
+        $result = $this->builder    ->where('minat_bakat.id_minatbakat', $id)
+                                    ->get()
+                                    ->getResult();
 
         if ($result > 0) {
             return true;

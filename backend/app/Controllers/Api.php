@@ -66,10 +66,12 @@ class Api extends BaseController
             $number++;
             $id_kasus = $kasuspre_id.$number;
         }
+        // Set variabel data untuk input ke database
         $data_kasus = [
             'id_kasus' => $id_kasus,
             'id_siswa' => $id_siswa
         ];
+        $kasusModel->insert($data_kasus);
         
         // Simpan pilihan pernyataan ke dalam tabel 'pernyataan_siswa'
         $pernyataanSiswaModel = new PernyataanSiswaModel();
