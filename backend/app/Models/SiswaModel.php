@@ -50,9 +50,9 @@ class SiswaModel extends Model
     // Tentu saja...
     function GetSiswa()
     {
-        return $this->builder->select('siswa.*')
-            ->get()
-            ->getResultArray();
+        return $this->builder   ->select('siswa.*')
+                                ->get()
+                                ->getResultArray();
     }
 
     // Memeriksa ID di Tabel Database

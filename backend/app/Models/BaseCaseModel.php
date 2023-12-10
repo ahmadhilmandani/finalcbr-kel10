@@ -46,9 +46,10 @@ class BaseCaseModel extends Model
     }
 
     function GetKasus(){ 
-        return $this->builder   ->select('base_case.*, kasus.*, minat_bakat.*')
+        return $this->builder   ->select('base_case.*, kasus.*, siswa.*, minat_bakat.*')
                                 ->join('kasus', 'kasus.id_kasus = base_case.id_kasus')
                                 ->join('minat_bakat', 'minat_bakat.id_minatbakat = kasus.id_minatbakat')
+                                ->join('siswa', 'kasus.id_siswa = siswa.id_siswa')
                                 ->get()
                                 ->getResultArray();
     }

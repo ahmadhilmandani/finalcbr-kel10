@@ -48,8 +48,9 @@ class KasusModel extends Model
 
     // Tentu saja...
     function GetKasus(){ 
-        return $this->builder   ->select('kasus.*, siswa.*')
+        return $this->builder   ->select('kasus.*, siswa.*, minat_bakat.*')
                                 ->join('siswa', 'kasus.id_siswa = siswa.id_siswa')
+                                ->join('minat_bakat', 'kasus.id_minatbakat = minat_bakat.id_minatbakat')
                                 ->get()
                                 ->getResultArray();
     }

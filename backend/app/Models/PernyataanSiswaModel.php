@@ -50,10 +50,11 @@ class PernyataanSiswaModel extends Model
     // Tentu saja...
     function GetPernyataanSiswa()
     {
-        return $this->builder->select('pernyataan_siswa.*, kasus.*, pernyataan.*')
-            ->join('kasus', 'pernyataan_siswa.id_kasus = kasus.id_kasus')
-            ->get()
-            ->getResultArray();
+        return $this->builder   ->select('pernyataan_siswa.*, kasus.*, pernyataan.*')
+                                ->join('kasus', 'pernyataan_siswa.id_kasus = kasus.id_kasus')
+                                ->join('pernyataan', 'pernyataan_siswa.id_pernyataan = pernyataan.id_pernyataan')
+                                ->get()
+                                ->getResultArray();
     }
 
     // Memeriksa ID di Tabel Database

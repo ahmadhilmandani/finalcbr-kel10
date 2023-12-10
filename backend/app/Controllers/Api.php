@@ -16,10 +16,16 @@ class Api extends BaseController
     public function index()
     {
         $basecmodel = new BaseCaseModel();
+        $kasusmodel = new KasusModel();
+        $siswamodel = new SiswaModel();
+        $psiswamodel = new PernyataanSiswaModel();
 
         // Set value data yang dikirim untuk reply / respond
         $data = [
-            'base case' => $basecmodel->GetKasus()
+            'base case' => $basecmodel->GetKasus(),
+            'kasus' => $kasusmodel->GetKasus(),
+            'siswa' => $siswamodel->GetSiswa(),
+            'pernyataan siswa' => $psiswamodel->GetPernyataanSiswa()
         ];
 
         // Respon ke Request
