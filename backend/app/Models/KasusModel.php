@@ -8,11 +8,11 @@ class KasusModel extends Model
 {
     protected $table            = 'kasus';
     protected $primaryKey       = 'id_kasus';
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $protectFields    = false;
+    protected $allowedFields    = ['*'];
 
     // Dates
     protected $useTimestamps = false;
@@ -58,8 +58,9 @@ class KasusModel extends Model
     // Memeriksa ID di Tabel Database
     function CekId($id){
         $result = $this->builder    ->where('kasus.id_kasus', $id)
-                                    ->get()
-                                    ->getResult();
+                                    ->countAllResults();
+                                    // ->get()
+                                    // ->getResult();
 
         if($result > 0){
             return true;

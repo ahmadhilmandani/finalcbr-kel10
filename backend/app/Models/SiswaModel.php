@@ -8,11 +8,11 @@ class SiswaModel extends Model
 {
     protected $table            = 'siswa';
     protected $primaryKey       = 'id_siswa';
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $protectFields    = false;
+    protected $allowedFields    = ['*'];
 
     // Dates
     protected $useTimestamps = false;
@@ -58,9 +58,10 @@ class SiswaModel extends Model
     // Memeriksa ID di Tabel Database
     function CekId($id)
     {
-        $result = $this->builder->where('siswa.id_siswa', $id)
-            ->get()
-            ->getResult();
+        $result = $this->builder    ->where('siswa.id_siswa', $id)
+                                    ->countAllResults();
+                                    // ->get()
+                                    // ->getResult();
 
         if ($result > 0) {
             return true;

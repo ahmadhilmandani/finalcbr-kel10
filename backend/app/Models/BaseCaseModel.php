@@ -45,7 +45,7 @@ class BaseCaseModel extends Model
         $this->builder = $this->db->table('base_case');
     }
 
-    function GetKasus(){ 
+    function GetCaseBase(){ 
         return $this->builder   ->select('base_case.*, kasus.*, siswa.*, minat_bakat.*')
                                 ->join('kasus', 'kasus.id_kasus = base_case.id_kasus')
                                 ->join('minat_bakat', 'minat_bakat.id_minatbakat = kasus.id_minatbakat')
