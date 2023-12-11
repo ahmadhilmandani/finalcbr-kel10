@@ -4,7 +4,7 @@
 <h5>.../Api</h5>
 
 <h3>GET Params</h3>
-<p>GET Request tanpa parameter akan langsung output semua data yang ada di tabel, <br> params dapat disesuaikan</p>
+<p>GET Request tanpa parameter akan langsung output semua data yang ada di masing - masing tabel database, <br> params dapat disesuaikan dengan daftar sebagai berikut :</p>
 <ul>
   <li>siswa</li>
   <li>pernyataan</li>
