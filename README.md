@@ -3,7 +3,7 @@
 <h2>API Endpoint</h1>
 <h5>.../Api</h5>
 
-<h3>GET Params</h3>
+<h3>GET</h3>
 <p>GET Request tanpa parameter akan langsung output semua data yang ada di masing - masing tabel database, <br> params dapat disesuaikan dengan daftar sebagai berikut :</p>
 <ul>
   <li>siswa</li>
