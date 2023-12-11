@@ -14,7 +14,7 @@
 </ul>
 
 <h3>POST</h3>
-<h5>Langsung menghitung hasil sorensen saat dilakukan request dengan params :</h5>
+<h5>Langsung menghitung hasil Sørensen–Dice coefficient saat dilakukan POST Request dengan params :</h5>
 <ul>
   <li>umur</li>
   <li>jenis_kelamin</li>
