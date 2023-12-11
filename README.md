@@ -13,7 +13,7 @@
 
 ### Tanpa Parameter
 
-Jika melakukan GET request tanpa parameter, itu akan mengembalikan semua data dari tabel-tabel tertentu dalam database.
+Melakukan GET Request tanpa parameter akan langsung mendapatkan output semua data yang ada di masing - masing tabel database
 
 ### Parameter GET yang Didukung
 
@@ -35,6 +35,4 @@ Params yang disebutkan dalam GET request:
 - kelas
 - id_pernyataan = []
 
-### Deskripsi Operasi POST
-
-**Fungsi:** Langsung menghitung koefisien Sørensen–Dice coefficient berdasarkan parameter yang diberikan pada saat POST request.
+**Fungsi:** Langsung menghitung koefisien Sørensen–Dice coefficient berdasarkan parameter yang diberikan pada saat POST Request dikirim.
