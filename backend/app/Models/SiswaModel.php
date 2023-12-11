@@ -55,6 +55,26 @@ class SiswaModel extends Model
                                 ->getResultArray();
     }
 
+    // Insert ke Database
+    function insertData($data){
+        $number = 1;
+        $siswapre_id = 'S';
+        // Memeriksa ID kasus sampai ditemukan yang tersedia
+        while ($this->CekId($siswapre_id.$number)){
+            $number++;
+            $id_siswa = $siswapre_id.$number;
+        }
+        // Set variabel data untuk input ke database
+        $data_siswa = [
+            'id_siswa' => $id_siswa,
+            //'nama' => $nama,
+            'umur' => $data['umur'],
+            'jenis_kelamin' => $data['jenis_kelamin'],
+            'kelas' => $data['kelas'],
+        ];
+        $this->insert($data_siswa);
+    }
+
     // Memeriksa ID di Tabel Database
     function CekId($id)
     {

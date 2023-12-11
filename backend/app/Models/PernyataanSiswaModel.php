@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class PernyataanSiswaModel extends Model
 {
-    protected $table            = 'pernyataansiswa';
+    protected $table            = 'pernyataan_siswa';
     protected $primaryKey       = 'id_pernyataansiswa';
     protected $useAutoIncrement = false;
     protected $returnType       = 'array';
@@ -55,6 +55,28 @@ class PernyataanSiswaModel extends Model
                                 ->join('pernyataan', 'pernyataan_siswa.id_pernyataan = pernyataan.id_pernyataan')
                                 ->get()
                                 ->getResultArray();
+    }
+
+    function insertData($data){
+        $number = 1;
+        $psiswapre_id = 'P';
+        // Memeriksa ID kasus sampai ditemukan yang tersedia
+        while ($this->CekId($psiswapre_id.$number)){
+            $number++;
+            $id_psiswa = $psiswapre_id.$number;
+        }
+        if (!empty($data['id_pernyataan'])) {
+            foreach ($data['id_pernyataan'] as $jawab) {
+                $data_pernyataansiswa = [
+                    'id_pernyataansiswa' => $id_psiswa,
+                    'id_kasus' => $data['id_kasus'],
+                    'id_pernyataan' => $jawab
+                ];
+                $number++;
+                $id_psiswa = $psiswapre_id.$number;
+                $this->insert($data_pernyataansiswa);
+            }
+        }
     }
 
     // Memeriksa ID di Tabel Database

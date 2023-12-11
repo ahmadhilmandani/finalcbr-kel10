@@ -55,6 +55,23 @@ class KasusModel extends Model
                                 ->getResultArray();
     }
 
+    function insertData($data){
+        $number = 1;
+        $kasuspre_id = 'K';
+
+        // Memeriksa ID kasus sampai ditemukan yang tersedia
+        while ($this->CekId($kasuspre_id.$number)){
+            $number++;
+            $id_kasus = $kasuspre_id.$number;
+        }
+        // Set variabel data untuk input ke database
+        $data_kasus = [
+            'id_kasus' => $id_kasus,
+            'id_siswa' => $data['id_siswa'],
+        ];
+        $this->insert($data_kasus);
+    }
+
     // Memeriksa ID di Tabel Database
     function CekId($id){
         $result = $this->builder    ->where('kasus.id_kasus', $id)

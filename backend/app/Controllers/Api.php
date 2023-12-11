@@ -42,74 +42,38 @@ class Api extends BaseController
     public function create()
     {
         // Ambil data siswa dari form
-        // $nama = $this->request->getPost('nama');
-        // $umur = $this->request->getPost('umur');
-        // $jenis_kelamin = $this->request->getPost('jenis_kelamin');
-        // $kelas = $this->request->getPost('kelas');
-        // $nama = $this->request->getJSON()->nama;
-        $umur = $this->request->getJSON()->umur;
-        $jenis_kelamin = $this->request->getJSON()->jenis_kelamin;
-        $kelas = $this->request->getJSON()->kelas;
-        
+        $data_siswa['umur'] = $this->request->getJSON()->umur;
+        $data_siswa['jenis_kelamin'] = $this->request->getJSON()->jenis_kelamin;
+        $data_siswa['kelas'] = $this->request->getJSON()->kelas;
         
         // Simpan data siswa ke tabel 'siswa'
         $siswaModel = new SiswaModel();
-        $number = 1;
-        $siswapre_id = 'S';
-        // Memeriksa ID kasus sampai ditemukan yang tersedia
-        while ($siswaModel->CekId($siswapre_id.$number)){
-            $number++;
-            $id_siswa = $siswapre_id.$number;
-        }
-        // Set variabel data untuk input ke database
-        $data_siswa = [
-            'id_siswa' => $id_siswa,
-            //'nama' => $nama,
-            'umur' => $umur,
-            'jenis_kelamin' => $jenis_kelamin,
-            'kelas' => $kelas,
-        ];
-        $siswaModel->insert($data_siswa);
+        $siswaModel->insertData($data_siswa);
+        $id_siswa = $siswaModel->getInsertID(); // Ambil ID siswa yang baru saja dimasukkan ke tabel `siswa`
         
-        // Ambil ID siswa yang baru saja dimasukkan ke tabel `siswa`
         $kasusModel = new KasusModel();
-        $number = 1;
-        $kasuspre_id = 'K';
-
-        // Memeriksa ID kasus sampai ditemukan yang tersedia
-        while ($kasusModel->CekId($kasuspre_id.$number)){
-            $number++;
-            $id_kasus = $kasuspre_id.$number;
-        }
-        // Set variabel data untuk input ke database
-        $data_kasus = [
-            'id_kasus' => $id_kasus,
-            'id_siswa' => $id_siswa,
-        ];
-        $kasusModel->insert($data_kasus);
+        $data_kasus['id_siswa'] = $id_siswa;
+        $kasusModel->insertData($data_kasus);
+        $id_kasus = $kasusModel->getInsertID();
         
         // Simpan pilihan pernyataan ke dalam tabel 'pernyataan_siswa'
         $pernyataanSiswaModel = new PernyataanSiswaModel();
-        // $jawaban = $this->request->getPost('jawaban');
-        $jawaban = $this->request->getJSON()->jawaban;
-        $number = 1;
-        $psiswapre_id = 'P';
-        // Memeriksa ID kasus sampai ditemukan yang tersedia
-        while ($pernyataanSiswaModel->CekId($psiswapre_id.$number)){
-            $number++;
-            $id_psiswa = $psiswapre_id.$number;
-        }
-        if (!empty($jawaban)) {
-            foreach ($jawaban as $jawab) {
-                $data_pernyataansiswa = [
-                    'id_pernyataansiswa' => $id_psiswa,
-                    'id_kasus' => $id_kasus,
-                    'id_pernyataan' => $jawab
-                ];
-                $number++;
-                $id_psiswa = $psiswapre_id.$number;
-                $pernyataanSiswaModel->insert($data_pernyataansiswa);
-            }
+        $data_pernyataansiswa['id_pernyataan'] = $this->request->getJSON()->id_pernyataan;
+        $data_pernyataansiswa['id_kasus'] = $id_kasus;
+        $pernyataanSiswaModel->insertData($data_pernyataansiswa);
+        //$id_pernyataansiswa = $pernyataanSiswaModel->getInsertID();
+
+        $data = [
+            'msg' => 'Berhasil~!',
+            'id_siswa' => $id_siswa,
+            'id_kasus' => $id_kasus,
+        ];
+        
+        // Respon ke Request
+        if ($data) {
+            return $this->respond($data);
+        } else {
+            return $this->failNotFound('Tidak berhasil.');
         }
     }
 }
