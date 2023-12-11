@@ -8,8 +8,8 @@ use App\Models\SiswaModel;
 use App\Models\PernyataanSiswaModel;
 use App\Models\PernyataanModel;
 use App\Models\KasusModel;
+use App\Models\MinatBakatModel;
 use CodeIgniter\API\ResponseTrait;
-use App\Helpers\hitungan;
 
 class Api extends BaseController
 {
@@ -23,6 +23,7 @@ class Api extends BaseController
         $siswamodel = new SiswaModel();
         $pernyataanmodel = new PernyataanModel();
         $psiswamodel = new PernyataanSiswaModel();
+        $minatbakatmodel = new MinatBakatModel();
 
         // Set value data yang dikirim untuk reply / 
         // Menentukan query parameter yang diterima
@@ -57,6 +58,9 @@ class Api extends BaseController
                         break;
                     case 'pernyataan_siswa':
                         $data['pernyataan_siswa'] = $psiswamodel->GetPernyataanSiswa();
+                        break;
+                    case 'minat_bakat':
+                        $data['minat_bakat'] = $minatbakatmodel->GetMinatBakat();
                         break;
                     default:
                         break;
