@@ -1,24 +1,40 @@
 # finalcbr-kel10
 
-<h2>API Endpoint</h1>
-<h5>.../Api</h5>
+# Endpoint
 
-<h3>GET</h3>
-<p>GET Request tanpa parameter akan langsung output semua data yang ada di masing - masing tabel database, <br> params dapat disesuaikan dengan daftar sebagai berikut :</p>
-<ul>
-  <li>siswa</li>
-  <li>pernyataan</li>
-  <li>minat_bakat</li>
-  <li>kasus</li>
-  <li>base_case</li>
-  <li>pernyataan_siswa</li>
-</ul>
+**URL:** .../Api
 
-<h3>POST</h3>
-<h5>Langsung menghitung hasil Sørensen–Dice coefficient saat dilakukan POST Request dengan params :</h5>
-<ul>
-  <li>umur</li>
-  <li>jenis_kelamin</li>
-  <li>kelas</li>
-  <li>id_pernyataan = []</li>
-</ul>
+## Metode
+
+- **GET:** Mengambil data dari tabel database.
+- **POST:** Menghitung hasil Sørensen–Dice coefficient berdasarkan parameter yang diberikan.
+
+## Operasi GET
+
+### Tanpa Parameter
+
+Jika melakukan GET request tanpa parameter, itu akan mengembalikan semua data dari tabel-tabel tertentu dalam database.
+
+### Parameter GET yang Didukung
+
+Params yang disebutkan dalam GET request:
+
+- siswa
+- pernyataan
+- minat_bakat
+- kasus
+- base_case
+- pernyataan_siswa
+
+## Operasi POST
+
+### Parameter
+
+- umur
+- jenis_kelamin
+- kelas
+- id_pernyataan = []
+
+### Deskripsi Operasi POST
+
+**Fungsi:** Langsung menghitung koefisien Sørensen–Dice coefficient berdasarkan parameter yang diberikan pada saat POST request.
