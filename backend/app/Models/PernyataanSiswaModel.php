@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class PernyataanSiswaModel extends Model
 {
-    protected $table            = 'pernyataansiswa';
+    protected $table            = 'pernyataan_siswa';
     protected $primaryKey       = 'id_pernyataansiswa';
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $protectFields    = false;
+    protected $allowedFields    = ['*'];
 
     // Dates
     protected $useTimestamps = false;
@@ -57,12 +57,35 @@ class PernyataanSiswaModel extends Model
                                 ->getResultArray();
     }
 
+    function insertData($data){
+        $number = 1;
+        $psiswapre_id = 'P';
+        // Memeriksa ID kasus sampai ditemukan yang tersedia
+        while ($this->CekId($psiswapre_id.$number)){
+            $number++;
+            $id_psiswa = $psiswapre_id.$number;
+        }
+        if (!empty($data['id_pernyataan'])) {
+            foreach ($data['id_pernyataan'] as $jawab) {
+                $data_pernyataansiswa = [
+                    'id_pernyataansiswa' => $id_psiswa,
+                    'id_kasus' => $data['id_kasus'],
+                    'id_pernyataan' => $jawab
+                ];
+                $number++;
+                $id_psiswa = $psiswapre_id.$number;
+                $this->insert($data_pernyataansiswa);
+            }
+        }
+    }
+
     // Memeriksa ID di Tabel Database
     function CekId($id)
     {
-        $result = $this->builder->where('pernyataan_siswa.id_pernyataansiswa', $id)
-            ->get()
-            ->getResult();
+        $result = $this->builder    ->where('pernyataan_siswa.id_pernyataansiswa', $id)
+                                    ->countAllResults();
+            // ->get()
+            // ->getResult();
 
         if ($result > 0) {
             return true;

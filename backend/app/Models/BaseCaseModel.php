@@ -45,13 +45,33 @@ class BaseCaseModel extends Model
         $this->builder = $this->db->table('base_case');
     }
 
-    function GetKasus(){ 
+    function GetCaseBase(){ 
         return $this->builder   ->select('base_case.*, kasus.*, siswa.*, minat_bakat.*')
                                 ->join('kasus', 'kasus.id_kasus = base_case.id_kasus')
                                 ->join('minat_bakat', 'minat_bakat.id_minatbakat = kasus.id_minatbakat')
                                 ->join('siswa', 'kasus.id_siswa = siswa.id_siswa')
                                 ->get()
                                 ->getResultArray();
+    }
+
+    function GetCaseBasePernyataan(){
+        $result = $this->builder    ->select('base_case.*, siswa.*, kasus.*, minat_bakat.*, GROUP_CONCAT(pernyataan_siswa.id_pernyataan) AS id_pernyataan')
+                                    ->join('kasus', 'kasus.id_kasus = base_case.id_kasus')
+                                    ->join('siswa', 'kasus.id_siswa = siswa.id_siswa')
+                                    ->join('pernyataan_siswa', 'pernyataan_siswa.id_kasus = kasus.id_kasus')
+                                    ->join('pernyataan', 'pernyataan.id_pernyataan = pernyataan_siswa.id_pernyataan')
+                                    ->join('minat_bakat', 'minat_bakat.id_minatbakat = kasus.id_minatbakat')
+                                    ->groupBy('kasus.id_kasus')
+                                    ->get()
+                                    ->getResultArray();
+        
+        // Memisahkan hasil dari GROUP_CONCAT menjadi array
+        foreach ( $result as $result ){
+            $result['id_pernyataan'] = explode(',', $result['id_pernyataan']);
+            $cases[] = $result;
+        }
+
+        return $cases;
     }
 
     function CekId($id){
