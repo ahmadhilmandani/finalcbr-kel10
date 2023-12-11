@@ -12,9 +12,9 @@ use CodeIgniter\API\ResponseTrait;
 class Api extends BaseController
 {
     use ResponseTrait;
-
     public function index()
     {
+        header('Access-Control-Allow-Origin: *');
         $basecmodel = new BaseCaseModel();
         $kasusmodel = new KasusModel();
         $siswamodel = new SiswaModel();
@@ -38,6 +38,7 @@ class Api extends BaseController
 
     public function create()
     {
+        header('Access-Control-Allow-Origin: *');
         // Ambil data mahasiswa dari form
         $nama = $this->request->getPost('nama');
         $umur = $this->request->getPost('umur');
